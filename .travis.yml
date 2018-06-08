@@ -2,6 +2,9 @@ language: python
 python:
 - '2.7'
 - '3.6'
+env:
+  global:
+  - PYTHONPATH="."
 script: python rice/test/test.py
 deploy:
   provider: pypi
