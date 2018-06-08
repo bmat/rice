@@ -1,0 +1,13 @@
+language: python
+python:
+- '2.7'
+- '3.6'
+script: python rice/test/test.py
+deploy:
+  provider: pypi
+  user: bmat
+  password:
+    secure: DKDqdGEMNN42clUHKxzh37WjM1K0YJo/46SlCtH2KUMvl9V1zqQs+f27I+Rp/JbbV3vALKUTmB6UfrbxNPLkciZzXmvj1aOqsImne4NdkHZoHsVZe1QxMAqx+ftokZDe7iX/yD40Q6b6fb6N5urechPuZJurIyCLz0PbwhJQqrB0E+9pW0nvQWK/Zm8ypuPvYMMOszJyzPwFvPA9Ooitsqlsj3WX0C531fnMMYX7JiwfrufuPF0cdb5NOxd7+zdDO7anliWxSa0G3wGMfT5W2BddozT5LlsodKPJt4FteiG06JC59Jbt6tSDC0FoFHgQ2dORqefh1xOrp7UbLXgnio3q2HQWYkaldcFilRgP5jYamg/B3OxtDAKUIY4QBHy3nL+9MbL3t/OSSwp4goVQHlkv0i8H7c/dtL3L6MAAN/XfY78ne5zypH+GlR9By8fIo5x1mdFUZtdC//+zOWAz3OxjT5TUntr9tFJNILiiG9bsv1L8KY6jiQjUq+DG+0RhIUbn2FEsrf4wnXyozSUduXEoXJcz59JQpiQb4NNYNEbwTmRqwEsZw7higsLuB5rj5uuGPTFuwgVA0of5r8qGWlydFxe28oTmmK0e8f6PycJo660szobNNTczqfXYTWwjkputjzZnD5Yigg23ZSlr0RAoksIj7ynun0eTdOv0xH0=
+  distributions: bdist_wheel
+  on:
+    tags: true

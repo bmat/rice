@@ -1,0 +1,4 @@
+docutils==0.14
+marshmallow==2.15.3
+marshmallow-enum==1.4.1
+
