@@ -4,7 +4,9 @@ python:
 env:
   global:
   - PYTHONPATH="."
-script: python rice/test/test.py
+install:
+  - pip install codecov
+script: coverage rice/test/test.py
 deploy:
   provider: pypi
   user: bmat
@@ -13,3 +15,7 @@ deploy:
   distributions: bdist_wheel
   on:
     tags: true
+
+after_success:
+  - codecov
+
