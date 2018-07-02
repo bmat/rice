@@ -6,7 +6,7 @@ env:
   - PYTHONPATH="."
 install:
   - pip install codecov
-script: coverage rice/test/test.py
+script: coverage run rice/test/test.py
 deploy:
   provider: pypi
   user: bmat
