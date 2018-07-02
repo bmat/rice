@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/bmat/rice.svg?branch=master)](https://travis-ci.org/bmat/rice)
-
+[![codecov](https://codecov.io/gh/bmat/rice/branch/master/graph/badge.svg)](https://codecov.io/gh/bmat/rice)
 TLDR: By adding the **`serializable`** keyword *after* the attribute type into your `Docstrings` it will be *automagically* **serializable**. 
 
 
