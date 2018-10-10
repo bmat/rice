@@ -6,7 +6,7 @@ with open('requirements.txt') as fp:
 setup(
     name='rice',
     packages=['rice'],
-    version='0.2',
+    version='0.3',
     description='Non intrusive serialization library',
     author='BMAT developers',
     author_email='tv-av@bmat.com',

@@ -35,6 +35,7 @@ type_map = {
     int: fields.Integer(),
     float: fields.Float(),
     datetime: fields.DateTime(),
+    bool: fields.Boolean(),
     None: fields.String()
 }
 
