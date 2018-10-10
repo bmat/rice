@@ -8,6 +8,7 @@ import re
 from marshmallow import Schema
 import inspect
 from marshmallow_enum import EnumField
+from datetime import datetime
 
 formats = {
     "json": json
@@ -33,6 +34,7 @@ type_map = {
     str: fields.String(),
     int: fields.Integer(),
     float: fields.Float(),
+    datetime: fields.DateTime(),
     None: fields.String()
 }
 
@@ -157,3 +159,4 @@ def deserialize(string, object_class, format='json'):
 
     else:
         raise Exception("Format '{format}' not supported".format(format=format))
+
