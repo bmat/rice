@@ -34,12 +34,21 @@ type_map = {
     str: fields.String(),
     int: fields.Integer(),
     float: fields.Float(),
-    datetime: fields.DateTime(),
     bool: fields.Boolean(),
+    datetime: fields.DateTime(),
     None: fields.String()
 }
 
+primitive_type_map = {
+    "str": str,
+    "int": int,
+    "float": float,
+    "bool": bool,
+    "datetime": datetime
+}
+
 reversed_type_map = {}
+schema_cache = {}
 
 
 def register_model(model_class):
@@ -93,7 +102,11 @@ def build_schema(serializables, module):
                 m = importlib.import_module(module)
                 if var_type_name[0] == "[" and var_type_name[-1] == "]":
                     is_list = True
-                    var_type = getattr(m, var_type_name[1:-1])
+                    item_type_name = var_type_name[1:-1]
+                    if item_type_name in primitive_type_map:
+                        var_type = primitive_type_map[item_type_name]
+                    else:
+                        var_type = getattr(m, item_type_name)
                 else:
                     var_type = getattr(m, var_type_name)
 
@@ -114,14 +127,18 @@ def build_schema(serializables, module):
     schema_class = type("SchemaClass", (Schema,), schema_attrs)
     return schema_class
 
-
 def serialize(data_object, format='json'):
 
     if format in formats:
-        m = get_doc_map(data_object.__class__)
-        Schema = build_schema(m, data_object.__module__)
-        schema = Schema()
+        if data_object.__class__ not in schema_cache:
+            m = get_doc_map(data_object.__class__)
+
+            Schema = build_schema(m, data_object.__module__)
+            _schema = Schema()
+            schema_cache[data_object.__class__] = _schema
+        schema = schema_cache[data_object.__class__]
         data = {}
+
         for i in schema.declared_fields.keys():
             data[i] = getattr(data_object, i, None)
         dump = schema.dump(data)
